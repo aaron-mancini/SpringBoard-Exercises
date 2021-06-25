@@ -25,6 +25,7 @@ form.addEventListener('submit', function(e){
     let listItem = document.createElement('li');
     let RemoveBtn = document.createElement('button');
     listItem.innerText = userInput;
+    listItem.complete = false;
     RemoveBtn.innerText = 'Remove';
     form.reset();
     list.append(listItem);
@@ -34,7 +35,25 @@ form.addEventListener('submit', function(e){
 
     toDoList.push({ taskItem: userInput, complete: false });
     localStorage.setItem('todolist', JSON.stringify(toDoList))
-})
+});
+
+list.addEventListener('click', function(e){
+    if(!e.target.complete){
+        e.target.classList.add('completed');
+        e.target.complete = true;
+        console.log(e.target);
+    } else {
+        e.target.classList.remove('completed');
+        e.target.complete = false;
+        console.log(e.target);
+    }
+for (let i = 0; i < toDoList.length; i++) {
+    if (toDoList[i].taskItem === e.target.innerText) {
+      toDoList[i].complete = !toDoList[i].complete;
+      localStorage.setItem("todolist", JSON.stringify(toDoList));
+    }
+  }
+});
 
 list.addEventListener('click', function(e){
     let textContent = e.target.parentElement.childNodes[0];
@@ -66,18 +85,4 @@ list.addEventListener('click', function(e){
     //   }
 })
 
-list.addEventListener('click', function(e){
-        if(!e.target.complete){
-            e.target.classList.add('completed');
-            e.target.complete = true;
-        } else {
-            e.target.classList.remove('completed');
-            e.target.complete = false;
-        }
-    for (let i = 0; i < toDoList.length; i++) {
-        if (toDoList[i].taskItem === e.target.innerText) {
-          toDoList[i].complete = !toDoList[i].complete;
-          localStorage.setItem("todolist", JSON.stringify(toDoList));
-        }
-      }
-});
+

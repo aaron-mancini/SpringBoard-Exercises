@@ -1,0 +1,55 @@
+
+/* #game {
+  height: 100%;
+  width: 80%;
+  position: absolute;
+  display: flex;
+  align-items: center;
+} */
+
+h1 {
+  text-align: center;
+}
+
+#game {
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  text-align: center;
+}
+
+#game div {
+  border: 1px solid black;
+  width: 100px;
+  height: 100px;
+  margin: 10px;
+  display: inline-block;
+}
+
+/* #playbutton {
+  text-align: center;
+  margin: auto;
+  width: 6rem;
+  border: 2px solid black;
+  padding: 10px;
+  font-family: 'Lobster', cursive;
+  color: white;
+  font-size: 1.5rem;
+  background-color: blue;
+} */
+
+.button {
+  text-align: center;
+  margin: auto;
+  width: 6rem;
+  border: 2px solid black;
+  padding: 10px;
+  font-family: 'Lobster', cursive;
+  color: white;
+  font-size: 1.5rem;
+  background-color: blue;
+}
+
+.hidden {
+  visibility: hidden;
+}
