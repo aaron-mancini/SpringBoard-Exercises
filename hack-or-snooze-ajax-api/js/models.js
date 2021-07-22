@@ -76,7 +76,6 @@ class StoryList {
    */
 
   async addStory( user, { title, author, url}) {
-    // UNIMPLEMENTED: complete this function!
     console.debug('addStory');
 
     const token = user.loginToken;
@@ -207,6 +206,8 @@ class User {
     }
   }
 
+  // adds a story to the user's favorites in the API
+
   async addFavorite(story) {
     this.favorites.push(story);
     const token = this.loginToken;
@@ -216,6 +217,8 @@ class User {
       data: {token}
     })
   }
+
+  // removes a story from the user's favorites in the API
   
   async removeFavorite(story) {
     this.favorites = this.favorites.filter(s => s.storyId !== story.storyId);
@@ -226,6 +229,8 @@ class User {
       data: {token}
     })
   }
+
+  // removes a story from the user's ownStories data and the API
 
   async removeStory(story) {
     this.ownStories = this.ownStories.filter(s => s.storyId !== story.storyId);

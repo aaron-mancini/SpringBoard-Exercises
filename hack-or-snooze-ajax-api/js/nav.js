@@ -45,6 +45,8 @@ function navSubmitStory() {
 
 $body.on('click', '#nav-submit-story', navSubmitStory);
 
+// When a user clicks favorites they can see only the stories they have favorited
+
 function navShowFavorites() {
   $allStoriesList.empty();
   putFavoritesListOnPage();
@@ -52,6 +54,8 @@ function navShowFavorites() {
 }
 
 $body.on('click', '#nav-favorites', navShowFavorites);
+
+// When a user clicks my stories they can see a list of their added stories
 
 function navShowStories() {
   console.debug('navShowStories');

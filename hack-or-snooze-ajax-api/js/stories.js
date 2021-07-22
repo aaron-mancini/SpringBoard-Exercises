@@ -23,12 +23,17 @@ function generateStoryMarkup(story, deletebtn = false) {
   // console.debug("generateStoryMarkup", story);
 
   const hostName = story.getHostName();
+
+// this checks if the story is a favorite or not
+
   let favorite = false;
   if(currentUser){
     if (currentUser.favorites.some(e => e.storyId === story.storyId)){
       favorite = true;
     }
   }
+
+  // a seperate markup for adding a delete button. this will only show when they user clicks "my stories"
 
   if(deletebtn === true){
     return $(`
@@ -47,6 +52,9 @@ function generateStoryMarkup(story, deletebtn = false) {
   `);
   }
   
+  // if the story is a favorite then it will make sure the star is filled in when the page is loaded
+  // otherwise it will default to unfilled star
+  // if no user is logged in then it will not show any stars on the page.
 
   if(favorite){
     return $(`
@@ -108,6 +116,9 @@ function putStoriesOnPage() {
   $allStoriesList.show();
 }
 
+// this is called from a callback function when a user clicks on the favorites link
+// it will repopulate the page with favorites only
+
 function putFavoritesListOnPage() {
   console.debug("putFavoritesListOnPage");
 
@@ -119,6 +130,9 @@ function putFavoritesListOnPage() {
 
   $allStoriesList.show();
 }
+
+// this function is trigged when a user submits a new story
+// the new stroy will be added to the top of the page
 
 async function addNewStory(evt) {
   console.debug('addNewStory');
@@ -139,6 +153,8 @@ async function addNewStory(evt) {
 
 $storyForm.on('submit', addNewStory);
 
+// this function will update if the story is a favorite or not and will update the star
+
 async function toggleFavorite(evt) {
   const tar = $(this).children().eq(0);
   const $closestLi = tar.closest("li");
@@ -155,6 +171,9 @@ async function toggleFavorite(evt) {
 
 $body.on('click', '.star', toggleFavorite);
 
+// this function is called from a callback function that is triggered when a user clicks "my stories"
+// it will populate the page with only the users submitted stories
+
 function putMyStoriesOnPage() {
   console.debug("putMyStoriesOnPage");
 
@@ -166,6 +185,9 @@ function putMyStoriesOnPage() {
 
   $allStoriesList.show();
 }
+
+// this is the function that triggers when a user clicks on the delete button
+// it will delete a story from the API and repopulate the page to show the updated stories list
 
 async function deleteStory(evt) {
   console.debug('deleteStory');
