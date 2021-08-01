@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}Create Madlib{% endblock %}
+
+{% block content %}
+<h1>MadLibs</h1>
+    <form action="/story/{{story_title}}" id="madlib-form">
+        {% for word in story %}
+        <label for="{{word}}">{{word}}:</label>
+        <input type="text" name="{{word}}">
+        {% endfor %}
+        <button>Submit!</button>
+    </form>
+{% endblock %}
