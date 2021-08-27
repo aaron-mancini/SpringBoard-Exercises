@@ -1,6 +1,6 @@
 """Seed file to make sample data for blogly db."""
 
-from models import User, db
+from models import User, Post, db
 from app import app
 
 db.drop_all()
@@ -13,5 +13,17 @@ bigbro = User(first_name='Travis', last_name='Doge', image_url='https://static.w
 
 db.session.add(aaron)
 db.session.add(bigbro)
+
+db.session.commit()
+
+Post.query.delete()
+
+first_post = Post(title='First Post!', content='This is my first post', user_id=1)
+second_post = Post(title='Second Post!', content='This is my second post', user_id=1)
+bigbro_post = Post(title='Doge', content='Bark bark bark', user_id=2)
+
+db.session.add(first_post)
+db.session.add(second_post)
+db.session.add(bigbro_post)
 
 db.session.commit()
