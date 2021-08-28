@@ -8,7 +8,11 @@
         <label>Title:</label>
         <input type="text" name="title">
         <label>Content:</label>
-        <textarea name="content" rows="10" cols="30"></textarea>
+        <textarea name="content" rows="10" cols="30"></textarea><br>
+        {% for tag in tags %}
+        <input type="checkbox" name="checkbox" value="{{tag.id}}">
+        <label>{{tag.name}}</label><br>
+        {% endfor %}
         <a href="/users/{{user.id}}">Cancel</a>
         <button>Add</button>
     </form>

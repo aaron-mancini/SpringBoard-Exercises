@@ -8,6 +8,11 @@
     {{post.content}}
 </p>
 <i>By {{user.first_name}} {{user.last_name}}</i><br>
+<p><b>Tags:</b>
+{% for tag in tags %}
+<p>{{tag.name}}</p>
+{% endfor %}
+</p>
 <a href="/users/{{user.id}}">Cancel</a>
 <a href="/posts/{{post.id}}/edit">Edit</a>
 <a href="/posts/{{post.id}}/delete">Delete</a>
