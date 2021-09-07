@@ -1,0 +1,21 @@
+{% extends 'base.html'  %}
+
+{% block content %}
+<h1>{{user.first_name}}'s Profile</h1>
+
+<p>Username: {{user.username}}</p>
+<p>Email: {{user.email}}</p>
+
+<a href="/users/{{user.username}}/delete">Delete Account</a>
+
+<h2>Feedback</h2>
+<p><a href="/users/{{user.username}}/feedback/add">add feedback</a></p>
+<ol>
+    {% for item in feedback %}
+        <li>{{item.title}}</li> 
+        <p>{{item.content}}</p>
+        <a href="/feedback/{{item.id}}/update">Edit</a><br>
+        <a href="/feedback/{{item.id}}/delete">Delete</a>
+    {% endfor %}
+</ol>
+{% endblock %}
