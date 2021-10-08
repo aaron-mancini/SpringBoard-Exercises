@@ -1,0 +1,14 @@
+{
+  "name": "files",
+  "version": "1.0.0",
+  "description": "node files exercise",
+  "main": "step1.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Aaron",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.22.0"
+  }
+}
