@@ -77,7 +77,6 @@ class Graph {
 
     seen.add(start);
 
-
     while (toVisitQueue.length) {
       current = toVisitQueue.shift();
       values.push(current.value);
@@ -92,6 +91,29 @@ class Graph {
 
     return values;
   }
+
+  testBreadthFirstSearch(start) {
+    let toVisitQueue = [start];
+    let seen = new Set();
+    let values = [];
+    let current;
+
+    seen.add(start);
+
+    while (toVisitQueue.length) {
+      current = toVisitQueue.shift();
+      values.push(current.value);
+      
+      for (let neighbor of current.adjacent) {
+        if(!seen.has(neighbor)) {
+          seen.add(neighbor);
+          toVisitQueue.push(neighbor);
+        }
+      }
+
+    return values;
+  }
 }
 
+}
 module.exports = {Graph, Node}
