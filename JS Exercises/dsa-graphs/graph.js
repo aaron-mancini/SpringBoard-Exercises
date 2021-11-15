@@ -69,7 +69,7 @@ class Graph {
   }
 
   // this function returns an array of Node values using BFS
-  breadthFirstSearch(start) {
+  testbreadthFirstSearch(start) {
     let toVisitQueue = [start];
     let seen = new Set();
     let values = [];
@@ -92,7 +92,7 @@ class Graph {
     return values;
   }
 
-  testBreadthFirstSearch(start) {
+  breadthFirstSearch(start) {
     let toVisitQueue = [start];
     let seen = new Set();
     let values = [];
@@ -110,9 +110,8 @@ class Graph {
           toVisitQueue.push(neighbor);
         }
       }
-
-    return values;
-  }
+    }
+  return values;
 }
 
 }
