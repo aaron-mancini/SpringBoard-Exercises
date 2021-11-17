@@ -25,3 +25,5 @@ Node/express-biztime/db.js
 Node/express-lunchly/node_modules/
 Node/express-messagely/node_modules/
 Node/express-messagely/config.js
+Node/express-bookstore/node_modules/
+Node/express-bookstore/config.js
