@@ -141,7 +141,6 @@ class Company {
       createFilter.push(`num_employees <= ${query.maxEmployees}`)
     }
     let filter = createFilter.join(" AND ")
-    console.log(filter);
 
     const result = await db.query(
       `SELECT handle,
