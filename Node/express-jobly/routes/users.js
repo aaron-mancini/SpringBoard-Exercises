@@ -103,6 +103,19 @@ router.patch("/:username", ensureAdminOrCorrectUser, async function (req, res, n
   }
 });
 
+/** POST /[username]/jobs/[id] => { applied: jobId } 
+ * 
+ * Authorization required: correct user or Admin
+*/
+
+router.post("/:username/jobs/:id", ensureAdminOrCorrectUser, async function (req, res, next) {
+  try {
+    const applied = await User.apply(req.params.username, req.params.id);
+    return res.json({ applied })
+  } catch (err) {
+    return next(err);
+  }
+});
 
 /** DELETE /[username]  =>  { deleted: username }
  *

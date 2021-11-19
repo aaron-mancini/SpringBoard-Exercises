@@ -140,6 +140,7 @@ describe("get", function () {
       lastName: "U1L",
       email: "u1@email.com",
       isAdmin: false,
+      jobs: [],
     });
   });
 
@@ -207,6 +208,30 @@ describe("update", function () {
       expect(err instanceof BadRequestError).toBeTruthy();
     }
   });
+});
+
+/************************************** apply */
+
+describe("apply", function () {
+  test("works", async function () {
+    let applied = await User.apply('u1', 1);
+
+    expect(applied).toEqual({
+      job_id: 1
+    })
+  })
+
+  test("bad request with dup data", async function () {
+    
+    try {
+      await User.apply('u1', 1);
+      await User.apply('u1', 1);
+      fail();
+    } catch (err) {
+      expect(err instanceof BadRequestError).toBeTruthy();
+    }
+
+  })
 });
 
 /************************************** remove */

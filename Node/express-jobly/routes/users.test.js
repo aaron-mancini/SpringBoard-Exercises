@@ -159,6 +159,7 @@ describe("GET /users/:username", function () {
         lastName: "U1L",
         email: "user1@user.com",
         isAdmin: false,
+        jobs: [],
       },
     });
   });
@@ -246,6 +247,38 @@ describe("PATCH /users/:username", () => {
     const isSuccessful = await User.authenticate("u1", "new-password");
     expect(isSuccessful).toBeTruthy();
   });
+});
+
+/************************************** POST /users/:username/jobs/:id */
+
+describe("POST /users/:username/jobs/:id", function () {
+  test("works for users", async function () {
+    const resp = await request(app)
+        .post(`/users/u1/jobs/1`)
+        .set("authorization", `Bearer ${u1Token}`);
+    expect(resp.body).toEqual({ applied: { job_id: 1 } });
+  });
+
+  test("works for admins", async function () {
+    const resp = await request(app)
+        .post(`/users/u1/jobs/1`)
+        .set("authorization", `Bearer ${AuthToken}`);
+    expect(resp.body).toEqual({ applied: { job_id: 1 } });
+  });
+
+  test("unauth for anon", async function () {
+    const resp = await request(app)
+        .post(`/users/u1/jobs/1`);
+
+    expect(resp.statusCode).toEqual(401);
+  });
+
+  test("fails with invalid job", async function () {
+    const resp = await request(app)
+        .post(`/users/u1/jobs/10`);
+
+    expect(resp.statusCode).toEqual(401);
+  })
 });
 
 /************************************** DELETE /users/:username */
