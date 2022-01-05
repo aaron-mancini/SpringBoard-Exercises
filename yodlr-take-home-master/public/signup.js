@@ -11,6 +11,6 @@ $(".user-form").on('submit', function(evt) {
         data: { email: email,
                 firstName: fName,
                 lastName: lName,
-                state: state}
+                state: state }
     })
 })
